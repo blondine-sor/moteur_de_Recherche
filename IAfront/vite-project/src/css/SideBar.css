@@ -1,0 +1,58 @@
+.sidebar {
+    width: 200px;
+    background-color: #f0f0f0;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow: auto;
+}
+
+.sidebar h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 10px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #333;
+}
+
+.sidebar a:hover {
+    color: #555;
+}
+.radio-buttons {
+    margin-top: 20px;
+}
+
+.radio-buttons label {
+    display: block;
+    margin-bottom: 10px;
+}
+.buttons {
+    margin-top: 20px;
+}
+
+.buttons button {
+    margin-right: 10px;
+    padding: 10px 20px;
+    background-color: rgb(119, 119, 119);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buttons button:hover {
+    background-color: #efefef;
+}
