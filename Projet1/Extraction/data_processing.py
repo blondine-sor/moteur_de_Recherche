@@ -27,7 +27,7 @@ def process_datasets(root_folder,descriptor):
                        file_name = f'{relative_path.split("/")[0]}_{file}'
                        #print(file_name)
                        image_rel_path = os.path.join(root,file)
-                       print(image_rel_path)
+                       #print(image_rel_path)
                        folder_name = os.path.basename(os.path.dirname(image_rel_path))
                        #print(folder_name)
                        try:

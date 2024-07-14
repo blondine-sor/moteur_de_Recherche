@@ -7,25 +7,31 @@ function App() {
  const[data,setData]=useState([])
  const [selectedMethod, setSelectedMethod] = useState('');
    
-
+//handles distance method change
  const handleChange = (event) => {
      setSelectedMethod(event.target.value);
  };
 
  const [selectedDescriptor, setSelectedDescriptor] = useState('option1');
-
+//handles selected descriptor change
  const handleDescriptorChange = (event) => {
      setSelectedDescriptor(event.target.value);
  };
 
  const [number,setSelectedNumber]= useState('')
-
+//handles number change
  const handleNumberChange = (event) =>{
      setSelectedNumber(event.target.value)
  }
 
+ //adds parameters to send to backend
  const addData=()=>{
   setData([...data,selectedDescriptor,selectedMethod,number])
+ }
+
+// empties array after flask received
+ const isSent=()=>{
+    setData([])
  }
  
   
@@ -42,7 +48,7 @@ function App() {
              addData={addData}
 
      />
-    <MainPage />
+    <MainPage  isSent={isSent}/>
     </DataContext.Provider>  
      </div>
    

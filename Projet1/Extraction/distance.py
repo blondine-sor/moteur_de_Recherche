@@ -41,7 +41,7 @@ def chebyshev(v1, v2):
  """
  
  v1,v2 = np.array(v1).astype('float'),np.array(v2).astype('float')
- dist = np.max(np.abs(v1-v2))
+ dist = canberra(v1,v2)
  return dist
 
 

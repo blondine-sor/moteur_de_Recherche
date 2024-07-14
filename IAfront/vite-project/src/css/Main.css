@@ -17,6 +17,12 @@
     margin-bottom: 20px;
 }
 
+.error-msg{
+color: red;
+font-size: 1.5rem;
+margin-bottom: 20px;
+}
+
 .buttons {
     margin-top: 20px;
 }

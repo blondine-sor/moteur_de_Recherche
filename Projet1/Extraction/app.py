@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+import numpy as np
 
 from descriptor import glcm,bitdesc
 from data_processing import process_datasets, retrieve_path
@@ -18,10 +19,27 @@ def submit_image():
         if 'params' in data_img and 'name' in data_img:
             params= data_img['params']
             name= data_img['name']
+            distance = params[1]
+            num = int(params[2])
+            
+            img_path = retrieve_path('../data',name)
+            if params[0] == 'glcm':
+               img_features= glcm(img_path)
+               print(img_features)
+               process_datasets('../data','glcm')   
+            elif params[0] == 'bitdesc':
+                img_features = bitdesc(img_path) 
+                print(img_features)
+                process_datasets('../data','bitdesc') 
 
-            print("Received Parameters:", params )
-            print("Received image", name)
-    
+               
+            
+
+            
+            
+            features_db = np.load('signatures.npy')
+            img_similaire = retrieve_similar_image(features_db,img_features,distance,num)
+            print(img_similaire)
             return jsonify({'message': 'Data received successfully'}), 200
         else:
             return jsonify({'Parameters are lacking'}),404

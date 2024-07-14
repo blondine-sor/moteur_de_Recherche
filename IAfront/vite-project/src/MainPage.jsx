@@ -3,14 +3,16 @@ import './css/Main.css'
 import DataContext from './dataContext';
 
 
-const  MainPage = () => {
+const  MainPage = ({isSent}) => {
 
-
+//uses information given in sidebar
      const data = useContext(DataContext)
      console.log(data)
+     
     const [selectedFile, setSelectedFile] = useState(null);
     const [imageUrl, setImageUrl] = useState(null);
-
+    const[errorMessage, setErrormessage] = useState("")
+// handles selected file change
     const handleFileChange = (event) => {
         setSelectedFile(event.target.files[0]);
         setImageUrl(URL.createObjectURL(event.target.files[0]));
@@ -25,6 +27,8 @@ const  MainPage = () => {
 
     const handleUpload = async() => {
         // Handle upload to backend flask
+        if (data!=[0] && selectedFile !=null){
+            setErrormessage("")
         const data_img={
             'params': data,
             'name': selectedFile.name
@@ -38,14 +42,18 @@ const  MainPage = () => {
                 body: JSON.stringify(data_img),  
             });
             if (!response.ok) {
-                throw new Error(`Response not ok! status: ${response.status}`);
+                throw new Error(`Response not ok! status: ${response.status}`);   
             }
             const result = await response.json();
             console.log(result); 
+            isSent()
 
         }
         catch (error) {
             console.error('Error:', error);
+        }}
+        else{
+            setErrormessage("Vous devez choisir vos parametres")
         }
         
     };
@@ -65,6 +73,7 @@ const  MainPage = () => {
                 <input type='file' name='image' webkitdirectory onChange={handleFileChange}/>
                 <button onClick={handleUpload}>Upload image </button>
                 <button onClick={handleDelete}>Remove Image</button>
+                <h3 className='error-msg'>{errorMessage}</h3>
             </div>
         </div>
         <div className="picture-grid">

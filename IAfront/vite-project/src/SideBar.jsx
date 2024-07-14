@@ -2,55 +2,6 @@ import React from "react";
 import './css/SideBar.css'
 
 const SideBar = ({selectedDescriptor,selectedMethod,handleNumberChange,handleDescriptorChange,handleChange,addData}) => {
-    // const [selectedMethod, setSelectedMethod] = useState('');
-   
-
-    // const handleChange = (event) => {
-    //     setSelectedMethod(event.target.value);
-    // };
-
-    // const [selectedDescriptor, setSelectedDescriptor] = useState('option1');
-
-    // const handleDescriptorChange = (event) => {
-    //     setSelectedDescriptor(event.target.value);
-    // };
-
-    // const [number,setSelectedNumber]= useState('')
-
-    // const handleNumberChange = (event) =>{
-    //     setSelectedNumber(event.target.value)
-    // }
-
-    // const submit_Params = async() =>{
-
-        
-    //         //create an object for all the parameters
-    //         const data={
-    //             'descriptor' : selectedDescriptor,
-    //             'method': selectedMethod,
-    //             'numValues': number
-    //         }
-            
-    //         //Send to the backend endpoint 
-    //      try{
-    //         const response= await fetch('http://localhost:5000/submit', {
-    //             method:'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify(data)
-
-    //         }
-    //         );if (response.ok){
-    //             console.log("It worked")
-    //         }
-            
-    //         }
-    //         catch(error){
-    //             console.error('Response not ok',error)
-    //         }
-    //     }
-
     
   return ( 
          <div className="sidebar">
