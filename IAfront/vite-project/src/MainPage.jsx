@@ -12,6 +12,7 @@ const  MainPage = ({isSent}) => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [imageUrl, setImageUrl] = useState(null);
     const[errorMessage, setErrormessage] = useState("")
+    const[similar_images, setSimilar_Images] = useState(null)
 // handles selected file change
     const handleFileChange = (event) => {
         setSelectedFile(event.target.files[0]);
@@ -29,6 +30,7 @@ const  MainPage = ({isSent}) => {
         // Handle upload to backend flask
         if (data!=[0] && selectedFile !=null){
             setErrormessage("")
+            
         const data_img={
             'params': data,
             'name': selectedFile.name
@@ -45,8 +47,10 @@ const  MainPage = ({isSent}) => {
                 throw new Error(`Response not ok! status: ${response.status}`);   
             }
             const result = await response.json();
+            setSimilar_Images(result)
             console.log(result); 
             isSent()
+            
 
         }
         catch (error) {
@@ -76,17 +80,41 @@ const  MainPage = ({isSent}) => {
                 <h3 className='error-msg'>{errorMessage}</h3>
             </div>
         </div>
+        
+            
         <div className="picture-grid">
-                {/* Placeholder images */}
-                <img src="https://via.placeholder.com/150" alt="Placeholder 1" />
-                <img src="https://via.placeholder.com/150" alt="Placeholder 2" />
-                <img src="https://via.placeholder.com/150" alt="Placeholder 3" />
-                <img src="https://via.placeholder.com/150" alt="Placeholder 4" />
-                <img src="https://via.placeholder.com/150" alt="Placeholder 5" />
-                <img src="https://via.placeholder.com/150" alt="Placeholder 6" />
+         { 
+         similar_images &&(
+           <DataDisplay response={similar_images}/> 
+         )}                            
             </div>
         </div>
   )
 }
 
 export default MainPage
+
+
+
+ export const DataDisplay = ({ response }) => {
+    return (
+        <div>
+            <h2>{response.message}</h2>
+            <ul>
+                {response.data.map((itemArray, index) => (
+                    <li key={index}>
+                        <img 
+                            src={`images/${itemArray[0]}`} 
+                            alt={itemArray[2]} 
+                            style={{ width: '100px', height: '100px' }} // Adjust size as needed
+                        />
+                        <div>
+                            <p>Nom: {itemArray[2]}</p>
+                        </div>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+};
+
