@@ -64,3 +64,4 @@ def retrieve_path(root_folder,img_file):
                             return image_rel_path
                             
 retrieve_path('../data','iris-01ab65973fd487a6cee4c5af1551c42b264eec5abab46bffd7c307ffef647e11.jpg')
+

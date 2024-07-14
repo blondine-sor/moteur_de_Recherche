@@ -39,8 +39,15 @@ def submit_image():
             
             features_db = np.load('signatures.npy')
             img_similaire = retrieve_similar_image(features_db,img_features,distance,num)
-            print(img_similaire)
-            return jsonify({'message': 'Data received successfully'}), 200
+        
+            
+              
+            
+            response_data ={
+                'message': 'Data received successfully',
+                'data': img_similaire
+            }
+            return jsonify(response_data), 200
         else:
             return jsonify({'Parameters are lacking'}),404
     else:
